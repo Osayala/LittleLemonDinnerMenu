@@ -23,5 +23,5 @@ class FilterOption: Identifiable {
     
 }
 
-let category = [FilterOption.Categories.food, FilterOption.Categories.drinks, FilterOption.Categories.dessert]
+var category = [FilterOption.Categories.food, FilterOption.Categories.drinks, FilterOption.Categories.dessert]
 let sortby = [FilterOption.Sortby.popular, FilterOption.Sortby.price, FilterOption.Sortby.alphabet]

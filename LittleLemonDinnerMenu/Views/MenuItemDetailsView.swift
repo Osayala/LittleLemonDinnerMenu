@@ -20,7 +20,8 @@ struct MenuItemDetailsView: View {
         VStack {
             Image(dish.imageDish)
                 .resizable()
-                .frame(width: 350, height: 220)
+                .scaledToFit()
+       
             Text("\(dish.nameDish) \n" )
                 .font(.largeTitle)
                 .bold()

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MenuItemsView: View {
   
-    @StateObject var model = Model()
-    
+    @ObservedObject var model = Model()
     
     let layout = [
         GridItem(.flexible()),
@@ -18,7 +17,7 @@ struct MenuItemsView: View {
         GridItem(.flexible())
         ]
     var body: some View {
-        let food = model.menuItems.filter{$0.category == FilterOption.Categories.food}
+        var food = model.menuItems.filter{$0.category == FilterOption.Categories.food}
         let drinks = model.menuItems.filter{$0.category == FilterOption.Categories.drinks}
         let dessert = model.menuItems.filter{$0.category == FilterOption.Categories.dessert}
     
@@ -34,12 +33,15 @@ struct MenuItemsView: View {
                                 Text("Food")
                                     .font(.title)
                                     .padding()
-                                Spacer()
+                                    .frame(
+                                        maxWidth: .infinity,
+                                        alignment: .leading
+                                    )
                             }
                             LazyVGrid(columns: layout, spacing: 20){
                                 ForEach(food) {item in
                                     NavigationLink(destination: MenuItemDetailsView(item, count)){
-                                        DishView(item)
+                                        DishView(dish: item)
                                         
                                     }
                                 }
@@ -50,12 +52,15 @@ struct MenuItemsView: View {
                                 Text("Drinks")
                                     .font(.title)
                                     .padding()
-                                    Spacer()
+                                    .frame(
+                                        maxWidth: .infinity,
+                                        alignment: .leading
+                                    )
                             }
                             LazyVGrid(columns: layout, spacing: 20){
                                 ForEach(drinks) {item in
                                     NavigationLink(destination: MenuItemDetailsView(item, count)){
-                                        DishView(item)
+                                        DishView(dish: item)
                                     }
                                 }
                             }
@@ -64,12 +69,15 @@ struct MenuItemsView: View {
                                 Text("Dessert")
                                     .font(.title)
                                     .padding()
-                                    Spacer()
+                                    .frame(
+                                        maxWidth: .infinity,
+                                        alignment: .leading
+                                    )
                             }
                             LazyVGrid(columns: layout, spacing: 20){
                                 ForEach(dessert) {item in
                                     NavigationLink(destination: MenuItemDetailsView(item,count)){
-                                        DishView(item)
+                                        DishView(dish: item)
                                     }
                                 }
                             }
